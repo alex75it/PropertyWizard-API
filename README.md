@@ -1,6 +1,6 @@
 # Property Wizard Web API
 
-Web API to retrive Property Wizard data.
+Web API to retrieve Property Wizard data.
 
 ## Tech stuff
 
