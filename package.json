@@ -1,0 +1,11 @@
+{
+    "name": "property-wizard-web-api",
+    "version": "0.1.0",
+    "author": "Alessandro Piccione",
+    "dependencies": {
+        "hapi": "^16.1.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
