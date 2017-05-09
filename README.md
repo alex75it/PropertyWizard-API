@@ -1,2 +1,3 @@
-# PropertyWizardAPI
-Web API to communicate with Property Wizard data
+# Property Wizard Web API
+
+Web API to retrive Property Wizard data.
