@@ -10,3 +10,6 @@ I'm following this tutorial:
 Docker: https://hub.docker.com/r/alessandropiccione/property-wizard-web-api/
 
 Setup webhook for Docker Hub trigger.
+
+Configured Codeship to access GitHub projects.
+Set up a project in Codeship for this project.
