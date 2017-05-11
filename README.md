@@ -2,6 +2,10 @@
 
 Web API to retrieve Property Wizard data.
 
+## How to run
+
+Start the server executing `npm run start`.
+
 ## Tech stuff
 
 I'm following this tutorial:
