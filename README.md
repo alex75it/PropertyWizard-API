@@ -1,10 +1,30 @@
 # Property Wizard Web API
 
 Web API to retrieve Property Wizard data.
+This is ann HTTP server running on Google App Engine.
+Google App Engine project Id: "property-wizard-web".  
+Url: https://property-wizard-web.appspot.com
 
-## How to run
+## API usage
 
-Start the server executing `npm run start`.
+### GET /
+
+Response: "Web API version {version}"
+
+### GET /ping
+
+Response: "pong"
+
+## How to 
+
+### Run locally
+
+Start the server executing `npm run start`.  
+Or use the `start server.bat` file in Windows.
+
+### Deploy
+
+Execute `npm run deploy` that call `gcloud app deploy` to deploy the application on Google App Engine.  
 
 ## Tech stuff
 

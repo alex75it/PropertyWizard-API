@@ -1,4 +1,4 @@
-var Hapi = require("Hapi");
+var Hapi = require("hapi");
 
 var server = new Hapi.Server();
 
@@ -11,6 +11,14 @@ server.route({
     path: "/",
     handler: function(request, response) {
         response("Web API");
+    }
+});
+
+server.route({
+    method: "GET",
+    path: "/ping",
+    handler: function(request, response){
+        response("pong");
     }
 });
 
