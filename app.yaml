@@ -3,7 +3,7 @@ runtime: nodejs
 env: flex
 
 skip_files: 
- - ^logs$
- - (.*/)?*\.bat
+- ^logs$
+- ^(.*/)?\.bat$
 
 # [END app_yaml]
