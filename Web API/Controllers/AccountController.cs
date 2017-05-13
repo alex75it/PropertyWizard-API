@@ -8,14 +8,15 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Web_API.Models;
-using Web_API.Providers;
 using Web_API.Results;
+using PropertyWizard.WebApi;
+using PropertyWizard.WebApi.Models;
+using PropertyWizard.WebApi.Providers;
 
 namespace Web_API.Controllers
 {
@@ -78,7 +79,7 @@ namespace Web_API.Controllers
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
-            IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
             if (user == null)
             {
