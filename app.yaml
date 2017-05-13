@@ -1,9 +1,0 @@
-# [START app_yaml]
-runtime: nodejs
-env: flex
-
-skip_files: 
-- ^logs$
-- ^(.*/)?\.bat$
-
-# [END app_yaml]
