@@ -12,7 +12,8 @@ namespace PropertyWizard.DataAccess.Entities
 
         public PostCode(string code, string description)
         {
-
+            Code = code;
+            Description = description;
         }
     }
 }
