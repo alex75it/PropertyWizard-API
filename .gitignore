@@ -3,3 +3,7 @@ packages/
 Web API/obj/
 Data Access/obj/
 Data Access/bin/
+UniteTests/obj/
+Integration Tests/obj/
+UniteTests/bin/
+Integration Tests/bin/

@@ -10,7 +10,7 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 {
     public class PostCodeRepository :RepositoryBase<PostCode>
     {
-
+        public new string CollectionName { get { return "postcoes";  } }
         public IEnumerable<PostCode> List(string partialPostCode)
         {
             var list = new List<PostCode>() { };

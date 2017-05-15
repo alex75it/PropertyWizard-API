@@ -12,7 +12,7 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
     {
         private string connectionString;
         private IMongoDatabase database;
-        private const string DATABASE_NAME = "Property Wizard";
+        private const string DATABASE_NAME = "property-wizard";
 
         public string ConnectionString
         {

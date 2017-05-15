@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,10 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
         public List<T> List()
         {
+            var recordsNumber = helper.GetCollection<BsonDocument>("postcodes").Count(FilterDefinition<BsonDocument>.Empty);
+
             var collection = helper.GetCollection<T>(CollectionName);
+
             var list = collection.FindSync(FilterDefinition<T>.Empty).ToList();
             return list;
         }
