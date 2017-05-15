@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web API", "Web API\Web API.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data Access", "Data Access\Data Access.csproj", "{0D7D49B1-2594-4803-982E-8A4D6BE8F631}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{A89F11AB-9105-40DD-B3CD-08E958A6CD3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit Tests", "UniteTests\Unit Tests.csproj", "{B0290223-CAD2-41EA-8A4E-213ACC35904B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration Tests", "Integration Tests\Integration Tests.csproj", "{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +27,20 @@ Global
 		{0D7D49B1-2594-4803-982E-8A4D6BE8F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D7D49B1-2594-4803-982E-8A4D6BE8F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D7D49B1-2594-4803-982E-8A4D6BE8F631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0290223-CAD2-41EA-8A4E-213ACC35904B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0290223-CAD2-41EA-8A4E-213ACC35904B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0290223-CAD2-41EA-8A4E-213ACC35904B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0290223-CAD2-41EA-8A4E-213ACC35904B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B0290223-CAD2-41EA-8A4E-213ACC35904B} = {A89F11AB-9105-40DD-B3CD-08E958A6CD3B}
+		{DBDBFC79-ECDF-4F42-9DEB-D0EE7233305A} = {A89F11AB-9105-40DD-B3CD-08E958A6CD3B}
 	EndGlobalSection
 EndGlobal
