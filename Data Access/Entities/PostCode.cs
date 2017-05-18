@@ -7,8 +7,8 @@ namespace PropertyWizard.DataAccess.Entities
 {
     public class PostCode
     {
-        public string Code { get; }
-        public string Description { get; }
+        public string Code { get; set; }
+        public string Description { get; set; }
 
         public PostCode(string code, string description)
         {

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 using PropertyWizard.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,8 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 {
     public class PostCodeRepository :RepositoryBase<PostCode>
     {
-        public new string CollectionName { get { return "postcoes";  } }
+        public override string CollectionName { get { return "postcodes"; } }
+
         public IEnumerable<PostCode> List(string partialPostCode)
         {
             var list = new List<PostCode>() { };
@@ -29,5 +31,15 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             return List().SingleOrDefault(p => p.Code == code);
         }
 
+        protected override void MapEntity()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(PostCode)))
+            {
+                BsonClassMap.RegisterClassMap<PostCode>(pc => {
+                    pc.MapProperty(m => m.Code).SetElementName("code");
+                    pc.MapProperty(m => m.Description).SetElementName("description");
+                });
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +25,6 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             }
         } 
 
-
         public IMongoDatabase Database
         {
             get
@@ -40,6 +40,5 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             IMongoCollection<T> collection = Database.GetCollection<T>(collectionName);
             return collection;
         }
-
     }
 }

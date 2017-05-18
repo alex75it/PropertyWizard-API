@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace PropertyWizard.WebApiDataAccess.Repositories
 {
-    public abstract class RepositoryBase<T>
+    public abstract class RepositoryBase<T> 
     {
         private MongoHelper helper = new MongoHelper();
 
+        public abstract string CollectionName { get; }
+        
         public RepositoryBase()
         {
-            CollectionName = typeof(T).Name;
+            MapEntity();
         }
 
-        public string CollectionName { get; private set; }
+        protected abstract void MapEntity();
 
         public List<T> List()
         {
-            var recordsNumber = helper.GetCollection<BsonDocument>("postcodes").Count(FilterDefinition<BsonDocument>.Empty);
-
             var collection = helper.GetCollection<T>(CollectionName);
-
-            var list = collection.FindSync(FilterDefinition<T>.Empty).ToList();
+            var list = collection.FindSync("{}").ToList();
             return list;
         }
 

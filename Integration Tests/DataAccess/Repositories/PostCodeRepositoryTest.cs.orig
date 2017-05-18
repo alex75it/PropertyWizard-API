@@ -17,24 +17,48 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
     {
         private PostCodeRepository repository;
 
+<<<<<<< Updated upstream
+=======
         private const string DATABASE_NAME = "property_wizard";
-        
+
+
+        [OneTimeSetUp]
+        public void OneTimeSetup()
+        {
+            //if (!BsonClassMap.IsClassMapRegistered(typeof(PostCode)))
+            //{
+            //    BsonClassMap.RegisterClassMap<PostCode>(pc => {
+            //        pc.MapProperty(m => m.Code).SetElementName("code");
+            //        pc.MapProperty(m => m.Description).SetElementName("description");
+            //    });
+            //}
+        }
+
+>>>>>>> Stashed changes
         [SetUp]
         public void SetUp()
         {
             repository = new PostCodeRepository();
+<<<<<<< Updated upstream
+=======
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             //DeleteTestRecord();
+>>>>>>> Stashed changes
         }
 
         [Test]
         public void List()
         {
+<<<<<<< Updated upstream
+
+            CreatePostCode(new PostCode("Test 1", DateTime.UtcNow.ToString()));
+=======
             CreatePostCode(new PostCode("code", "description"));
+>>>>>>> Stashed changes
 
             // Execute
             var list = repository.List();
@@ -45,20 +69,16 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 
         private void CreatePostCode(PostCode postCode)
         {
+<<<<<<< Updated upstream
+            var collection = new MongoClient(ConfigurationManager.AppSettings["MongoDB connection string"]).GetDatabase("property-wizard").GetCollection<PostCode>("postcodes");
+=======
             DeleteTestRecord(postCode.Code); // clean if exists
 
             var collection = new MongoClient(ConfigurationManager.AppSettings["MongoDB connection string"]).GetDatabase(DATABASE_NAME)
                 .GetCollection<PostCode>(new PostCodeRepository().CollectionName);
+>>>>>>> Stashed changes
 
             collection.InsertOne(postCode);
-        }
-
-        private void DeleteTestRecord(string code)
-        {
-            var collection = new MongoClient(ConfigurationManager.AppSettings["MongoDB connection string"]).GetDatabase(DATABASE_NAME)
-                .GetCollection<PostCode>("postcodes");
-
-            collection.FindOneAndDelete(Builders<PostCode>.Filter.Eq<string>(p => p.Code, code));
         }
 
     }
