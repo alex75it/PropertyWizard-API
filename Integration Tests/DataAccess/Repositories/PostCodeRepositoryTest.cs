@@ -43,6 +43,25 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             Assert.IsNotEmpty(list);
         }
 
+        [Test]
+        public void Get()
+        {
+            string code = "code" + DateTime.Now.Millisecond;
+            string description = "description" + DateTime.Now.Millisecond;
+            var postCode = new PostCode(code, description);
+            CreatePostCode(postCode);
+
+            // Act
+            postCode = repository.Get(code);
+
+            Assert.IsNotNull(postCode);
+            Assert.AreEqual(code, postCode.Code);
+            Assert.AreEqual(description, postCode.Description);
+        }
+
+
+        #region utilities
+
         private void CreatePostCode(PostCode postCode)
         {
             DeleteTestRecord(postCode.Code); // clean if exists
@@ -60,6 +79,8 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 
             collection.FindOneAndDelete(Builders<PostCode>.Filter.Eq<string>(p => p.Code, code));
         }
+
+        #endregion
 
     }
 }
