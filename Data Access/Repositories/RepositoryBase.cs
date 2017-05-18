@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PropertyWizard.WebApiDataAccess.Repositories
 {
-    public abstract class RepositoryBase<T> 
+    public abstract class RepositoryBase<TEntity, TIdentifier> 
     {
         private MongoHelper helper = new MongoHelper();
 
@@ -21,12 +21,26 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
         protected abstract void MapEntity();
 
-        public List<T> List()
+        public List<TEntity> List()
         {
-            var collection = helper.GetCollection<T>(CollectionName);
+            var collection = helper.GetCollection<TEntity>(CollectionName);
             var list = collection.FindSync("{}").ToList();
             return list;
         }
 
+        public TEntity Get(TIdentifier identifier)
+        {
+            string _id = identifier is string ?
+                "\"" + identifier + "\"" :
+                identifier.ToString()
+                ;
+
+            string filter = $"{{_id: {_id}}}";
+
+            var item = helper.GetCollection<TEntity>(CollectionName)
+                .FindAsync<TEntity>(filter).Result.FirstOrDefault();
+
+            return item;
+        }
     }
 }

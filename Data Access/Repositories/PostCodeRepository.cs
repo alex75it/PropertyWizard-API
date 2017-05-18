@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PropertyWizard.WebApiDataAccess.Repositories
 {
-    public class PostCodeRepository :RepositoryBase<PostCode>
+    public class PostCodeRepository :RepositoryBase<PostCode, string>
     {
         public override string CollectionName { get { return "postcodes"; } }
 
