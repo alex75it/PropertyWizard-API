@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PropertyWizard.WebApiDataAccess.Entities;
 
 namespace PropertyWizard.WebApiDataAccess.Repositories
 {
@@ -45,10 +46,18 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
             string filter = $"{{{IdentityField}: {idValue}}}";
 
-            var item = helper.GetCollection<TEntity>(CollectionName)
-                .FindAsync<TEntity>(filter).Result.FirstOrDefault();
+            var item = Collection.Find(filter).First(); // FindAsync<TEntity>(filter).Result.FirstOrDefault();
 
             return item;
+        }
+
+        internal List<TEntity> Search(FilterDefinition<TEntity> filter)
+        {
+            return Collection.Find(filter).ToList();
+        }
+
+        private IMongoCollection<TEntity> Collection {
+            get { return helper.GetCollection<TEntity>(CollectionName);  }
         }
     }
 }

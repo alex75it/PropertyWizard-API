@@ -4,11 +4,13 @@ using System.Linq;
 
 using PropertyWizard.WebApiDataAccess.Entities;
 using MongoDB.Bson.Serialization;
+using static MongoDB.Bson.Serialization.BsonDeserializationContext;
+using MongoDB.Driver;
 
 namespace PropertyWizard.WebApiDataAccess.Repositories
 {
     public class ZooplaListingRepository : RepositoryBase<ZooplaListing, int>
-    {
+    {        
         public override string CollectionName { get { return "zoopla-listings"; } }
         protected override string IdentityField { get { return "listing_id"; } }
 
@@ -27,7 +29,8 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
         public List<ZooplaListing> List(string postCode)
         {
-            throw new Exception("Not implemented");
+            var filter = Builders<ZooplaListing>.Filter.Eq<string>(zl => zl.PostCode, postCode);
+            return base.Search(filter);
         }
     }
 
