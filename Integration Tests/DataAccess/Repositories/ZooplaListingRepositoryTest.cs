@@ -64,6 +64,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         {
             var listing = new ZooplaListing(1, "postcode", DateTime.UtcNow);
             listing.Price = 1.23m;
+            listing.AgencyName = "agency name";
             CreateListing(listing);
 
             // Act
@@ -74,6 +75,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             savedListing.PostCode.ShouldEqual(listing.PostCode);
             Assert.IsTrue(savedListing.LastPublishDate - listing.LastPublishDate < TimeSpan.FromMilliseconds(10));
             savedListing.Price.ShouldEqual(listing.Price);
+            savedListing.AgencyName.ShouldEqual(listing.AgencyName);
         }
 
 

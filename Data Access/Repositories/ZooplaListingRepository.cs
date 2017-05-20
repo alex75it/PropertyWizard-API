@@ -23,6 +23,7 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
                     zl.MapProperty(m => m.PostCode).SetElementName("postcode");
                     zl.MapProperty(m => m.LastPublishDate).SetElementName("last_published_date");
                     zl.MapProperty(m => m.Price).SetElementName("price");
+                    zl.MapProperty(x => x.AgencyName).SetElementName("agency_name");
                 });
             }
         }

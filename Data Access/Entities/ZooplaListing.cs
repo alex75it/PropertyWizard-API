@@ -13,7 +13,8 @@ namespace PropertyWizard.WebApiDataAccess.Entities
         public DateTime LastPublishDate { get; set; }
 
         public decimal Price { get; set; }
-        
+        public string AgencyName { get; set; }
+
         public ZooplaListing(int listingId, string postCode, DateTime lastPublishDate)
         {
             ListingId = listingId;
