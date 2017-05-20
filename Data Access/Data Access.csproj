@@ -58,10 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\PostCode.cs" />
+    <Compile Include="Entities\ZooplaListing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PostCodeRepository.cs" />
     <Compile Include="Repositories\MongoHelper.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\ZooplaListingRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
