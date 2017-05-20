@@ -20,6 +20,7 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
         }
 
         protected abstract void MapEntity();
+        protected abstract string IdentityField { get; }
 
         public List<TEntity> List()
         {
@@ -37,12 +38,12 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
         public TEntity Get(TIdentifier identifier)
         {
-            string _id = identifier is string ?
+            string idValue = identifier is string ?
                 "\"" + identifier + "\"" :
                 identifier.ToString()
                 ;
 
-            string filter = $"{{_id: {_id}}}";
+            string filter = $"{{{IdentityField}: {idValue}}}";
 
             var item = helper.GetCollection<TEntity>(CollectionName)
                 .FindAsync<TEntity>(filter).Result.FirstOrDefault();

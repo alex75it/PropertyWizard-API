@@ -5,6 +5,7 @@ using System.Linq;
 
 using MongoDB.Driver;
 using NUnit.Framework;
+using Should;
 
 using PropertyWizard.WebApiDataAccess.Entities;
 using PropertyWizard.WebApiDataAccess.Repositories;
@@ -19,8 +20,8 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         private const string DATABASE_NAME = "property_wizard";
         private string connectionString = ConfigurationManager.AppSettings["MongoDB connection string"];
 
-        [SetUp]
-        public void SetUp()
+        [OneTimeSetUp]        
+        public void OneTimeSetUp()
         {
             repository = new ZooplaListingRepository();
         }
@@ -34,7 +35,8 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         [Test]
         public void List()
         {
-            CreateListing(new ZooplaListing(1, "postcode", DateTime.UtcNow));
+            var listing = new ZooplaListing(1, "postcode", DateTime.UtcNow);
+            CreateListing(listing);
 
             // Execute
             var list = repository.List();
@@ -55,6 +57,23 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             Assert.AreEqual(list.Count(), 1);
             Assert.AreEqual(list[0].ListingId, 1);
             Assert.AreEqual(list[0].PostCode, "postcode");
+        }
+
+        [Test]
+        public void Get()
+        {
+            var listing = new ZooplaListing(1, "postcode", DateTime.UtcNow);
+            listing.Price = 1.23m;
+            CreateListing(listing);
+
+            // Act
+            var savedListing = repository.Get(listing.ListingId);
+
+            Assert.IsNotNull(savedListing);
+            savedListing.ListingId.ShouldEqual(listing.ListingId);
+            savedListing.PostCode.ShouldEqual(listing.PostCode);
+            Assert.IsTrue(savedListing.LastPublishDate - listing.LastPublishDate < TimeSpan.FromMilliseconds(10));
+            savedListing.Price.ShouldEqual(listing.Price);
         }
 
 

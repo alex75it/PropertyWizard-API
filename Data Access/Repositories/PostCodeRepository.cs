@@ -12,6 +12,7 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
     public class PostCodeRepository :RepositoryBase<PostCode, string>
     {
         public override string CollectionName { get { return "postcodes"; } }
+        protected override string IdentityField { get { return "code"; } }
 
         public IEnumerable<PostCode> List(string partialPostCode)
         {

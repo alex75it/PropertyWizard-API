@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PropertyWizard.WebApiDataAccess.Entities
 {
@@ -14,6 +12,8 @@ namespace PropertyWizard.WebApiDataAccess.Entities
 
         public DateTime LastPublishDate { get; set; }
 
+        public decimal Price { get; set; }
+        
         public ZooplaListing(int listingId, string postCode, DateTime lastPublishDate)
         {
             ListingId = listingId;
