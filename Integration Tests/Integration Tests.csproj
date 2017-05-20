@@ -74,6 +74,7 @@
     <Compile Include="DataAccess\Repositories\PostCodeRepositoryTest.cs" />
     <Compile Include="DataAccess\Repositories\ZooplaListingRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web API\ZooplaListingsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

@@ -23,7 +23,7 @@ namespace PropertyWizard.WebApi.Controllers
             this.repository = new PostCodeRepository();
         }
 
-        // GET api/postcode
+        // GET postcode
         public IEnumerable<PostCode> Get()
         {
             logger.Info("Get");
@@ -32,7 +32,7 @@ namespace PropertyWizard.WebApi.Controllers
             return list;
         }
 
-        // GET api/postcode/SE17
+        // GET postcode/SE17
         public PostCode Get(string code)
         {
             logger.Info("Get(code)");
