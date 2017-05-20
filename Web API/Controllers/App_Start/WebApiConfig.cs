@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
 using System.Net.Http.Headers;
+
+using Newtonsoft.Json.Serialization;
 
 namespace Web_API
 {
@@ -27,6 +27,9 @@ namespace Web_API
                 routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            // enable CORS: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+            config.EnableCors();
 
             // return JSON by default
             config.Formatters.JsonFormatter.SupportedMediaTypes
