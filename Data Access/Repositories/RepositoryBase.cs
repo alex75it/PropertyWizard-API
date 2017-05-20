@@ -23,9 +23,16 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
 
         public List<TEntity> List()
         {
-            var collection = helper.GetCollection<TEntity>(CollectionName);
-            var list = collection.FindSync("{}").ToList();
-            return list;
+            try
+            {
+                var collection = helper.GetCollection<TEntity>(CollectionName);
+                var list = collection.FindSync("{}").ToList();
+                return list;
+            }
+            catch (Exception exc)
+            {
+                throw new Exception("Fail to execute List().", exc);
+            }
         }
 
         public TEntity Get(TIdentifier identifier)
