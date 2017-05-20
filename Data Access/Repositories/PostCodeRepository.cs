@@ -32,6 +32,11 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             return List().SingleOrDefault(p => p.Code == code);
         }
 
+        public new void Delete(string code)
+        {
+            base.Delete(code);
+        }
+
         protected override void MapEntity()
         {
             if (!BsonClassMap.IsClassMapRegistered(typeof(PostCode)))

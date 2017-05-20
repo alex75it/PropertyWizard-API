@@ -1,14 +1,14 @@
-﻿using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using NUnit.Framework;
-using PropertyWizard.DataAccess.Entities;
-using PropertyWizard.WebApiDataAccess.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using MongoDB.Driver;
+using NUnit.Framework;
+using Should;
+
+using PropertyWizard.DataAccess.Entities;
+using PropertyWizard.WebApiDataAccess.Repositories;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
@@ -32,9 +32,48 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         }
 
         [Test]
+        public void Create()
+        {
+            var postCode = new PostCode("code", "description");
+            DeleteTestRecord(postCode.Code);
+
+            // Act
+            PostCode savedPostCode = repository.Create(postCode);
+
+            Assert.IsNotNull(savedPostCode);
+            savedPostCode.Code.ShouldEqual(postCode.Code);
+            savedPostCode.Description.ShouldEqual(postCode.Description);
+        }
+
+        [Test]
+        public void Create__when__CodeAlreadyExists__should__RaiseAnError()
+        {
+            var postCode = new PostCode("code", "description");
+            CreateTestRecord(postCode);
+
+            // Act
+            Assert.Throws<MongoWriteException>( () =>
+                repository.Create(postCode)
+            );
+        }
+
+        [Test]
+        public void Delete()
+        {
+            var postCode = new PostCode("code", "description");
+            CreateTestRecord(postCode);
+
+            // Act
+            repository.Delete(postCode.Code);
+
+            postCode = repository.Get(postCode.Code);
+            Assert.IsNull(postCode);
+        }
+
+        [Test]
         public void List()
         {
-            CreatePostCode(new PostCode("code", "description"));
+            CreateTestRecord(new PostCode("code", "description"));
 
             // Execute
             var list = repository.List();
@@ -49,7 +88,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             string code = "code" + DateTime.Now.Millisecond;
             string description = "description" + DateTime.Now.Millisecond;
             var postCode = new PostCode(code, description);
-            CreatePostCode(postCode);
+            CreateTestRecord(postCode);
 
             // Act
             postCode = repository.Get(code);
@@ -62,7 +101,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 
         #region utilities
 
-        private void CreatePostCode(PostCode postCode)
+        private void CreateTestRecord(PostCode postCode)
         {
             DeleteTestRecord(postCode.Code); // clean if exists
 

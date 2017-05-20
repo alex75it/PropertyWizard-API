@@ -23,6 +23,17 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
         protected abstract void MapEntity();
         protected abstract string IdentityField { get; }
 
+        public TEntity Create(TEntity item)
+        {
+            Collection.InsertOne(item);
+            return item;
+        }
+
+        public void Delete(TIdentifier id)
+        {
+            Collection.DeleteOne( GetFilterById(id) );
+        }
+
         public List<TEntity> List()
         {
             try
@@ -37,17 +48,9 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             }
         }
 
-        public TEntity Get(TIdentifier identifier)
+        public TEntity Get(TIdentifier id)
         {
-            string idValue = identifier is string ?
-                "\"" + identifier + "\"" :
-                identifier.ToString()
-                ;
-
-            string filter = $"{{{IdentityField}: {idValue}}}";
-
-            var item = Collection.Find(filter).First(); // FindAsync<TEntity>(filter).Result.FirstOrDefault();
-
+            var item = Collection.Find(GetFilterById(id)).First();
             return item;
         }
 
@@ -56,8 +59,19 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             return Collection.Find(filter).ToList();
         }
 
-        private IMongoCollection<TEntity> Collection {
+        private IMongoCollection<TEntity> Collection
+        {
             get { return helper.GetCollection<TEntity>(CollectionName);  }
+        }
+
+        public FilterDefinition<TEntity> GetFilterById(TIdentifier id)
+        {
+            string idValue = id is string ?
+                "\"" + id + "\"" :
+                id.ToString();
+
+            string filter = $"{{{IdentityField}: {idValue}}}";
+            return filter;
         }
     }
 }
