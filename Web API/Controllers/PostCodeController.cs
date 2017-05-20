@@ -7,9 +7,11 @@ using System.Web.Http;
 
 using PropertyWizard.DataAccess.Entities;
 using PropertyWizard.WebApiDataAccess.Repositories;
+using System.Web.Http.Cors;
 
 namespace PropertyWizard.WebApi.Controllers
 {
+    [EnableCors(origins: "http://propertywizard.org", headers: "*", methods: "*")]
     [RoutePrefix("postcode")]
     public class PostCodeController : ControllerBase
     {
