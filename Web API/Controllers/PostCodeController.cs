@@ -26,15 +26,16 @@ namespace PropertyWizard.WebApi.Controllers
         }
 
         // GET postcode
-        public IEnumerable<PostCode> Get()
+        public IEnumerable<PostCode> GetList()
         {
-            logger.Info("Get");
+            logger.Info("GetList");
             var list = repository.List();
 
             return list;
         }
 
         // GET postcode/SE17
+        [Route("{code}")]
         public PostCode Get(string code)
         {
             logger.Info("Get(code)");
