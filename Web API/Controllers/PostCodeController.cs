@@ -26,15 +26,23 @@ namespace PropertyWizard.WebApi.Controllers
         }
 
         // GET postcode
+        /// <summary>
+        /// Return all the post codes.
+        /// </summary>
+        [Route("")]
         public IEnumerable<PostCode> GetList()
         {
             logger.Info("GetList");
             var list = repository.List();
-
             return list;
         }
 
         // GET postcode/SE17
+        /// <summary>
+        /// Return the Post code with the given "code";
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [Route("{code}")]
         public PostCode Get(string code)
         {
@@ -54,8 +62,10 @@ namespace PropertyWizard.WebApi.Controllers
         }
 
         // DELETE api/postcode/5
-        public void Delete(int id)
+        [Route("{code}")]
+        public void Delete(string code)
         {
+            repository.Delete(code);
         }
     }
 }
