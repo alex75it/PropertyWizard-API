@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace PropertyWizard.WebApi.Controllers
 {
-    [EnableCors(origins: "http://www.propertywizard.org", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("postcode")]
     public class PostCodeController : ControllerBase
     {

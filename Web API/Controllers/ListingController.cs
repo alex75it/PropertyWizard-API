@@ -10,7 +10,7 @@ using PropertyWizard.WebApiDataAccess.Repositories;
 
 namespace PropertyWizard.WebApi.Controllers
 {
-    [EnableCors(origins: "http://www.propertywizard.org", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("listing")]
     public class ListingController : ControllerBase
     {
