@@ -65,6 +65,7 @@ namespace PropertyWizard.WebApi.Controllers
         [Route("{code}")]
         public void Delete(string code)
         {
+            logger.Info($"Delete({code})");
             repository.Delete(code);
         }
     }
