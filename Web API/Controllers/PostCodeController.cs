@@ -51,17 +51,17 @@ namespace PropertyWizard.WebApi.Controllers
             return postcode;
         }
 
-        // POST api/postcode
-        public void Post([FromBody]string value)
-        {
-        }
+        //// POST api/postcode
+        //public void Post([FromBody]string value)
+        //{
+        //}
 
-        // PUT api/postcode/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT api/postcode/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE api/postcode/5
+        // DELETE postcode/5
         [Route("{code}")]
         public void Delete(string code)
         {
