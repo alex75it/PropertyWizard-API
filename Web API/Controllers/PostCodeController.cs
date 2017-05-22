@@ -11,7 +11,8 @@ using System.Web.Http.Cors;
 
 namespace PropertyWizard.WebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    //[EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "GET, PUT, POST, DELETE, OPTIONS")]
     [RoutePrefix("postcode")]
     public class PostCodeController : ControllerBase
     {
