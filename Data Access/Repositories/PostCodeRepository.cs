@@ -14,22 +14,29 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
         public override string CollectionName { get { return "postcodes"; } }
         protected override string IdentityField { get { return "code"; } }
 
-        public IEnumerable<PostCode> List(string partialPostCode)
-        {
-            var list = new List<PostCode>() { };
+        //public IEnumerable<PostCode> List(string partialPostCode)
+        //{
+        //    var list = new List<PostCode>() { };
 
-            list.Add(new PostCode("EC1", "London EC1"));
-            list.Add(new PostCode("EC2", "London EC2"));
-            list.Add(new PostCode("EC3", "London EC3"));
-            list.Add(new PostCode("SE17", "London SE17"));            
+        //    list.Add(new PostCode("EC1", "London EC1"));
+        //    list.Add(new PostCode("EC2", "London EC2"));
+        //    list.Add(new PostCode("EC3", "London EC3"));
+        //    list.Add(new PostCode("SE17", "London SE17"));            
                         
-            return list;
-        }
+        //    return list;
+        //}
 
 
         public PostCode Get(string code)
         {
             return List().SingleOrDefault(p => p.Code == code);
+        }
+
+        public void Update(string code, PostCode data)
+        {
+            UpdateDefinition<PostCode> update = Builders<PostCode>.Update.Set<string>(p => p.Description, data.Description);
+
+            base.Update(code, update);
         }
 
         public new void Delete(string code)

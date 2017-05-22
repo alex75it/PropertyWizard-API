@@ -29,6 +29,11 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
             return item;
         }
 
+        public void Update(TIdentifier id, UpdateDefinition<TEntity> update)
+        {
+            Collection.UpdateOne(GetFilterById(id), update);
+        }
+
         public void Delete(TIdentifier id)
         {
             Collection.DeleteOne( GetFilterById(id) );
