@@ -12,7 +12,7 @@ using System.Web.Http.Cors;
 namespace PropertyWizard.WebApi.Controllers
 {
     //[EnableCors(origins: "*", headers: "*", methods: "*")]
-    [EnableCors(origins: "*", headers: "*", methods: "GET, PUT, POST, DELETE, OPTIONS")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("postcode")]
     public class PostCodeController : ControllerBase
     {
@@ -53,6 +53,7 @@ namespace PropertyWizard.WebApi.Controllers
         }
 
         // POST api/postcode
+        [Route("")]
         public void Post(PostCode data)
         {
             repository.Create(data);
