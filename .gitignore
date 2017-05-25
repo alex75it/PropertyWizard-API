@@ -8,3 +8,6 @@ Integration Tests/obj/
 UniteTests/bin/
 Integration Tests/bin/
 Web API/logs/
+Core/obj/Debug/netstandard1.6/.IncrementalCache
+Core/obj/
+Core/bin/
