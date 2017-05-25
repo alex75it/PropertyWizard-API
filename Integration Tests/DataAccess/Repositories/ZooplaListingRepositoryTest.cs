@@ -60,11 +60,18 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         }
 
         [Test]
-        public void Get()
+        public void Get_should_ReadAlTheProperties()
         {
             var listing = new ZooplaListing(1, "postcode", DateTime.UtcNow);
             listing.Price = 1.23m;
             listing.AgencyName = "agency name";
+
+            listing.PropertyType = "property type";
+            listing.Category = "category";
+            listing.Latitude = 1.23; // "latitude";
+            listing.Longitude = 4.56; // "longitude";
+            listing.Address = "address";
+
             CreateListing(listing);
 
             // Act
@@ -76,6 +83,11 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             Assert.IsTrue(savedListing.LastPublishDate - listing.LastPublishDate < TimeSpan.FromMilliseconds(10));
             savedListing.Price.ShouldEqual(listing.Price);
             savedListing.AgencyName.ShouldEqual(listing.AgencyName);
+            savedListing.PropertyType.ShouldEqual(listing.PropertyType);
+            savedListing.Category.ShouldEqual(listing.Category);
+            savedListing.Latitude.ShouldEqual(listing.Latitude);
+            savedListing.Longitude.ShouldEqual(listing.Longitude);
+            savedListing.Address.ShouldEqual(listing.Address);
         }
 
 

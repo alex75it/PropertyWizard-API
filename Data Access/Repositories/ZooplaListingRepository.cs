@@ -24,6 +24,13 @@ namespace PropertyWizard.WebApiDataAccess.Repositories
                     zl.MapProperty(m => m.LastPublishDate).SetElementName("last_published_date");
                     zl.MapProperty(m => m.Price).SetElementName("price");
                     zl.MapProperty(x => x.AgencyName).SetElementName("agency_name");
+                    zl.MapProperty(x => x.PropertyType).SetElementName("property_type");
+                    zl.MapProperty(x => x.Category).SetElementName("category");
+
+                    zl.MapProperty(x => x.Latitude).SetElementName("latitude");
+                    zl.MapProperty(x => x.Longitude).SetElementName("longitude");
+
+                    zl.MapProperty(x => x.Address).SetElementName("full_address");
                 });
             }
         }
