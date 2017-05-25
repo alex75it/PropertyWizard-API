@@ -1,9 +1,10 @@
-﻿using System;
+﻿using PropertyWizard.WebApi.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PropertyWizard.WebApiDataAccess.Core
+namespace PropertyWizard.WebApi.Core.Providers
 {
     public class AgencyProvider
     {
@@ -27,4 +28,5 @@ namespace PropertyWizard.WebApiDataAccess.Core
             };
         }
     }
+
 }

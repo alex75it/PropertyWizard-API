@@ -184,6 +184,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AgencyController.cs" />
     <Compile Include="Controllers\App_Start\ApplicationUser.cs" />
     <Compile Include="Controllers\App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\App_Start\FilterConfig.cs" />
@@ -310,6 +311,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{FC05FAD2-6352-45D5-A860-CB6127E674BB}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data Access\Data Access.csproj">
       <Project>{0d7d49b1-2594-4803-982e-8a4d6be8f631}</Project>
       <Name>Data Access</Name>
