@@ -7,8 +7,8 @@ using MongoDB.Driver;
 using NUnit.Framework;
 using Should;
 
-using PropertyWizard.DataAccess.Entities;
-using PropertyWizard.WebApiDataAccess.Repositories;
+using PropertyWizard.DataAccess.Repositories;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {

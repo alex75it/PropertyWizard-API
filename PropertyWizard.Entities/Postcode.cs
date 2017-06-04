@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace PropertyWizard.DataAccess.Entities
+namespace PropertyWizard.Entities
 {
     public class PostCode
     {

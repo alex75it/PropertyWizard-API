@@ -3,15 +3,12 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PropertyWizard.WebApiDataAccess.Entities;
 
-namespace PropertyWizard.WebApiDataAccess.Repositories
+namespace PropertyWizard.DataAccess.Repositories
 {
     public abstract class RepositoryBase<TEntity, TIdentifier> 
     {
-        private MongoHelper helper = new MongoHelper();
+        internal MongoHelper helper = new MongoHelper();
 
         public abstract string CollectionName { get; }
         

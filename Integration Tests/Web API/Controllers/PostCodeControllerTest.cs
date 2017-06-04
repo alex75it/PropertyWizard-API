@@ -1,14 +1,16 @@
-﻿using Newtonsoft.Json.Serialization;
-using NUnit.Framework;
-using PropertyWizard.DataAccess.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
+
+using Newtonsoft.Json.Serialization;
+using NUnit.Framework;
+
 using Web_API;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.IntegrationTests.Web_API.Controllers
 {
@@ -19,7 +21,7 @@ namespace PropertyWizard.IntegrationTests.Web_API.Controllers
         private const string BASE_URL = "http://www.apitest.com/" +  "postcode";
 
         [OneTimeSetUp]
-        public void OneTimeStUp()
+        public void OneTimeSetUp()
         {
 
         }

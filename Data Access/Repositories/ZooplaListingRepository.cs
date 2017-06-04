@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using PropertyWizard.WebApiDataAccess.Entities;
 using MongoDB.Bson.Serialization;
-using static MongoDB.Bson.Serialization.BsonDeserializationContext;
 using MongoDB.Driver;
 
-namespace PropertyWizard.WebApiDataAccess.Repositories
-{
+using PropertyWizard.Entities;
+
+namespace PropertyWizard.DataAccess.Repositories
+{   
     public class ZooplaListingRepository : RepositoryBase<ZooplaListing, int>
-    {        
-        public override string CollectionName { get { return "zoopla-listings"; } }
+    {
+        public const string COLLECTION_NAME = "zoopla-listings";
+        public override string CollectionName { get { return COLLECTION_NAME; } }
         protected override string IdentityField { get { return "listing_id"; } }
 
         protected override void MapEntity()

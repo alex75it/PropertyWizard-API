@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PropertyWizard.WebApiDataAccess.Entities
+namespace PropertyWizard.Entities
 {
     public class ZooplaListing
     {
         public int ListingId { get; set; }
 
-        public string  PostCode { get; set; }
+        public string PostCode { get; set; }
 
         public DateTime LastPublishDate { get; set; }
 

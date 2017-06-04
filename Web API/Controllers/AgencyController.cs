@@ -5,8 +5,9 @@ using System.Web;
 using System.Web.Http.Cors;
 using System.Web.Mvc;
 
-using PropertyWizard.WebApi.Core.Providers;
-using PropertyWizard.WebApi.Core.Entities;
+using PropertyWizard.Core.Providers;
+using PropertyWizard.DataAccess.Repositories;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.WebApi.Controllers
 {
@@ -18,7 +19,8 @@ namespace PropertyWizard.WebApi.Controllers
 
         public AgencyController()
         {
-            this.provider = new AgencyProvider();
+            IAgencyRepository agencyRepository = new AgencyRepository();
+            this.provider = new AgencyProvider(agencyRepository);
         }
 
         // GET agency/

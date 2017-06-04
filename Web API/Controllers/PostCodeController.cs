@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-
-using PropertyWizard.DataAccess.Entities;
-using PropertyWizard.WebApiDataAccess.Repositories;
 using System.Web.Http.Cors;
+
+using PropertyWizard.DataAccess.Repositories;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.WebApi.Controllers
 {

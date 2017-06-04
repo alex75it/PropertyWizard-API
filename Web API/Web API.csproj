@@ -319,6 +319,10 @@
       <Project>{0d7d49b1-2594-4803-982e-8a4d6be8f631}</Project>
       <Name>Data Access</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PropertyWizard.Entities\PropertyWizard.Entities.csproj">
+      <Project>{73B31603-2F92-4F7C-A475-E978306AE9C2}</Project>
+      <Name>PropertyWizard.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

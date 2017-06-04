@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.Http.Cors;
 using System.Web.Mvc;
 
-using PropertyWizard.WebApiDataAccess.Entities;
-using PropertyWizard.WebApiDataAccess.Repositories;
+using PropertyWizard.DataAccess.Repositories;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.WebApi.Controllers
 {

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integration Tests", "Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{FC05FAD2-6352-45D5-A860-CB6127E674BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyWizard.Entities", "PropertyWizard.Entities\PropertyWizard.Entities.csproj", "{73B31603-2F92-4F7C-A475-E978306AE9C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{FC05FAD2-6352-45D5-A860-CB6127E674BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC05FAD2-6352-45D5-A860-CB6127E674BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC05FAD2-6352-45D5-A860-CB6127E674BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B31603-2F92-4F7C-A475-E978306AE9C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B31603-2F92-4F7C-A475-E978306AE9C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B31603-2F92-4F7C-A475-E978306AE9C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B31603-2F92-4F7C-A475-E978306AE9C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
