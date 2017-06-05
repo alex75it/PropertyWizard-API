@@ -11,3 +11,5 @@ Web API/logs/
 Core/obj/Debug/netstandard1.6/.IncrementalCache
 Core/obj/
 Core/bin/
+PropertyWizard.Entities/obj/
+PropertyWizard.Entities/bin/
