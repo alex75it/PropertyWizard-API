@@ -7,6 +7,8 @@ using System.Web.Http.Cors;
 
 using PropertyWizard.DataAccess.Repositories;
 using PropertyWizard.Entities;
+using PropertyWizard.Core.Providers;
+using PropertyWizard.Core.Entities;
 
 namespace PropertyWizard.WebApi.Controllers
 {
@@ -16,13 +18,18 @@ namespace PropertyWizard.WebApi.Controllers
     public class PostCodeController : ControllerBase
     {
         private readonly PostCodeRepository repository;
+        private StatisticsProvider statisticsProvider;
 
-        //public PostCodeController(PostCodeRepository repository) {
+        //public PostCodeController(PostCodeRepository repository, StatisticsProvider statisticsProvider) {
         //    this.repository = repository;
+        //     StatisticsProvider statisticsProvider
         //}
 
         public PostCodeController() {
             this.repository = new PostCodeRepository();
+            IZooplaListingRepository zooplaListingRepository = new ZooplaListingRepository();
+            IAgencyRepository agencyRepository = new AgencyRepository();
+            this.statisticsProvider = new StatisticsProvider(zooplaListingRepository, agencyRepository);
         }
 
         // GET postcode
@@ -71,6 +78,14 @@ namespace PropertyWizard.WebApi.Controllers
         {
             logger.Info($"Delete({code})");
             repository.Delete(code);
+        }
+
+        [Route("statistics")]
+        public ICollection<AgencyData> GetStatistics(string code)
+        {
+            logger.Info($"GetStatistics({code})");
+
+            return statisticsProvider.GetPostcodeStatistics(code);
         }
     }
 }

@@ -8,8 +8,13 @@ using MongoDB.Driver;
 using PropertyWizard.Entities;
 
 namespace PropertyWizard.DataAccess.Repositories
-{   
-    public class ZooplaListingRepository : RepositoryBase<ZooplaListing, int>
+{
+    public interface IZooplaListingRepository
+    {
+        List<ZooplaListing> List(string postCode);
+    }
+
+    public class ZooplaListingRepository : RepositoryBase<ZooplaListing, int>, IZooplaListingRepository
     {
         public const string COLLECTION_NAME = "zoopla-listings";
         public override string CollectionName { get { return COLLECTION_NAME; } }

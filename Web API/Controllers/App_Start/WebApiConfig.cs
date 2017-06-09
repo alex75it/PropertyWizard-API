@@ -7,7 +7,7 @@ using System.Net.Http.Headers;
 
 using Newtonsoft.Json.Serialization;
 
-namespace Web_API
+namespace PropertyWizard.WebApi
 {
     public static class WebApiConfig
     {

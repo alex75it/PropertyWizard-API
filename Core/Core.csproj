@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AgencyData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AgencyProvider.cs" />
+    <Compile Include="Providers\StatisticsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data Access\Data Access.csproj">

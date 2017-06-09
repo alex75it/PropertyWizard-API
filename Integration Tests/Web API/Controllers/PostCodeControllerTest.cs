@@ -8,11 +8,13 @@ using System.Web.Http;
 
 using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
+using MongoDB.Driver;
 
-using Web_API;
 using PropertyWizard.Entities;
+using PropertyWizard.WebApi;
+using MongoDB.Bson.Serialization;
 
-namespace PropertyWizard.IntegrationTests.Web_API.Controllers
+namespace PropertyWizard.IntegrationTests.WebApi.Controllers
 {
     [TestFixture]
     public class PostCodeControllerTest
@@ -23,8 +25,9 @@ namespace PropertyWizard.IntegrationTests.Web_API.Controllers
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-
+            MapEntities();
         }
+        
 
         [Test]
         public void Post()
@@ -41,6 +44,8 @@ namespace PropertyWizard.IntegrationTests.Web_API.Controllers
             string description = "description";
             var data = new PostCode(code, description);
 
+            TestHelper.DeletePostCode(code);
+
             HttpRequestMessage request = new HttpRequestMessage(method, url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -48,15 +53,16 @@ namespace PropertyWizard.IntegrationTests.Web_API.Controllers
             formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             request.Content = new ObjectContent<PostCode>(data, formatter);
 
-            // cleanup 
-            DeletePostCode(code);
-
-
+            // Act
             using (var server = new HttpServer(GetConfiguration()))
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(server))
             {
                 var response = client.SendAsync(request).Result;
             }
+
+            PostCode postCode = TestHelper.GetPostCode(code);
+            Assert.IsNotNull(postCode);
+            Assert.AreEqual(description, postCode.Description);
         }
 
 
@@ -76,9 +82,33 @@ namespace PropertyWizard.IntegrationTests.Web_API.Controllers
 
         #region utilities
 
-        private void DeletePostCode(dynamic code)
+        private void MapEntities()
         {
-            throw new NotImplementedException();
+            if (!BsonClassMap.IsClassMapRegistered(typeof(ZooplaListing)))
+            {
+                BsonClassMap.RegisterClassMap<ZooplaListing>(zl => {
+                    zl.MapProperty(m => m.ListingId).SetElementName("listing_id");
+                    zl.MapProperty(m => m.PostCode).SetElementName("postcode");
+                    zl.MapProperty(m => m.LastPublishDate).SetElementName("last_published_date");
+                    zl.MapProperty(m => m.Price).SetElementName("price");
+                    zl.MapProperty(x => x.AgencyName).SetElementName("agency_name");
+                    zl.MapProperty(x => x.PropertyType).SetElementName("property_type");
+                    zl.MapProperty(x => x.Category).SetElementName("category");
+
+                    zl.MapProperty(x => x.Latitude).SetElementName("latitude");
+                    zl.MapProperty(x => x.Longitude).SetElementName("longitude");
+
+                    zl.MapProperty(x => x.Address).SetElementName("full_address");
+                });
+            }
+
+            if (!BsonClassMap.IsClassMapRegistered(typeof(PostCode)))
+            {
+                BsonClassMap.RegisterClassMap<PostCode>(pc => {
+                    pc.MapProperty(m => m.Code).SetElementName("code");
+                    pc.MapProperty(m => m.Description).SetElementName("description");
+                });
+            }
         }
 
         #endregion

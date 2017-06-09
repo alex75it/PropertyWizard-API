@@ -52,7 +52,7 @@ namespace PropertyWizard.DataAccess.Repositories
 
         public TEntity Get(TIdentifier id)
         {
-            var item = Collection.Find(GetFilterById(id)).First();
+            var item = Collection.Find(GetFilterById(id)).FirstOrDefault();
             return item;
         }
 
