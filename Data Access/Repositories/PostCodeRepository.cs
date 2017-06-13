@@ -31,6 +31,7 @@ namespace PropertyWizard.DataAccess.Repositories
                 BsonClassMap.RegisterClassMap<PostCode>(pc => {
                     pc.MapProperty(m => m.Code).SetElementName("code");
                     pc.MapProperty(m => m.Description).SetElementName("description");
+                    pc.MapProperty(m => m.Enabled).SetElementName("enabled");
                 });
             }
         }
