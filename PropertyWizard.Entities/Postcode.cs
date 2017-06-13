@@ -8,11 +8,13 @@ namespace PropertyWizard.Entities
     {
         public string Code { get; set; }
         public string Description { get; set; }
+        public bool Enabled { get; set; }
 
-        public PostCode(string code, string description)
+        public PostCode(string code, string description, bool enabled)
         {
             Code = code;
             Description = description;
+            Enabled = enabled;
         }
     }
 }

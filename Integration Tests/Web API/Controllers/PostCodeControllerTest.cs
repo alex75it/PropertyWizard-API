@@ -42,7 +42,8 @@ namespace PropertyWizard.IntegrationTests.WebApi.Controllers
 
             string code = "code";
             string description = "description";
-            var data = new PostCode(code, description);
+            bool enabled = !default(bool);
+            var data = new PostCode(code, description, enabled);
 
             TestHelper.DeletePostCode(code);
 

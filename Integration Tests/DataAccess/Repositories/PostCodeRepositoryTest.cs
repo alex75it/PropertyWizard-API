@@ -34,7 +34,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         [Test]
         public void Create()
         {
-            var postCode = new PostCode("code", "description");
+            var postCode = new PostCode("code", "description", !default(bool));
             DeleteTestRecord(postCode.Code);
 
             // Act
@@ -43,12 +43,13 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             Assert.IsNotNull(savedPostCode);
             savedPostCode.Code.ShouldEqual(postCode.Code);
             savedPostCode.Description.ShouldEqual(postCode.Description);
+            savedPostCode.Enabled.ShouldEqual(postCode.Enabled);
         }
 
         [Test]
         public void Create__when__CodeAlreadyExists__should__RaiseAnError()
         {
-            var postCode = new PostCode("code", "description");
+            var postCode = new PostCode("code", "description", true);
             CreateTestRecord(postCode);
 
             // Act
@@ -60,7 +61,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         [Test]
         public void Delete()
         {
-            var postCode = new PostCode("code", "description");
+            var postCode = new PostCode("code", "description", true);
             CreateTestRecord(postCode);
 
             // Act
@@ -73,7 +74,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         [Test]
         public void List()
         {
-            CreateTestRecord(new PostCode("code", "description"));
+            CreateTestRecord(new PostCode("code", "description", !default(bool)));
 
             // Execute
             var list = repository.List();
@@ -87,7 +88,8 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         {
             string code = "code" + DateTime.Now.Millisecond;
             string description = "description" + DateTime.Now.Millisecond;
-            var postCode = new PostCode(code, description);
+            bool enabled = !default(bool);
+            var postCode = new PostCode(code, description, enabled);
             CreateTestRecord(postCode);
 
             // Act
@@ -96,6 +98,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             Assert.IsNotNull(postCode);
             Assert.AreEqual(code, postCode.Code);
             Assert.AreEqual(description, postCode.Description);
+            Assert.AreEqual(enabled, postCode.Enabled);
         }
 
 
