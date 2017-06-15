@@ -18,6 +18,14 @@ namespace PropertyWizard.IntegrationTests.WebApi
                 .FindOneAndDelete(Builders<PostCode>.Filter.Eq<string>(p => p.Code, code));
         }
 
+        internal static void CreatePostCode(PostCode postcode)
+        {
+            DeletePostCode(postcode.Code);
+
+            GetPostCodeCollection()
+                .InsertOne(postcode);
+        }
+
         internal static PostCode GetPostCode(string code)
         {
             return GetPostCodeCollection()

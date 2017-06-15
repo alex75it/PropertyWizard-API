@@ -66,6 +66,44 @@ namespace PropertyWizard.IntegrationTests.WebApi.Controllers
             Assert.AreEqual(description, postCode.Description);
         }
 
+        [Test]
+        public void Update()
+        {
+            var method = HttpMethod.Put;
+            
+
+            string code = "code";
+            string description = "description";
+            bool enabled = default(bool);
+
+            var url = $"{BASE_URL}/{code}";
+
+            var postCode = new PostCode(code, description, enabled);
+            TestHelper.CreatePostCode(postCode);
+
+            postCode.Description += " chanage";
+            postCode.Enabled = !postCode.Enabled;
+
+            HttpRequestMessage request = new HttpRequestMessage(method, url);
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            JsonMediaTypeFormatter formatter = new JsonMediaTypeFormatter();
+            formatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            request.Content = new ObjectContent<PostCode>(postCode, formatter);
+
+            // Act
+            using (var server = new HttpServer(GetConfiguration()))
+            using (var client = new HttpClient(server))
+            {
+                var response = client.SendAsync(request).Result;
+            }
+
+            var postCodeUpdated = TestHelper.GetPostCode(code);
+            Assert.IsNotNull(postCodeUpdated);
+            Assert.AreEqual(postCode.Description, postCodeUpdated.Description);
+            Assert.AreEqual(postCode.Enabled, postCodeUpdated.Enabled);
+        }
+
 
         protected HttpConfiguration GetConfiguration()
         {
@@ -108,6 +146,7 @@ namespace PropertyWizard.IntegrationTests.WebApi.Controllers
                 BsonClassMap.RegisterClassMap<PostCode>(pc => {
                     pc.MapProperty(m => m.Code).SetElementName("code");
                     pc.MapProperty(m => m.Description).SetElementName("description");
+                    pc.MapProperty(m => m.Enabled).SetElementName("enabled");
                 });
             }
         }

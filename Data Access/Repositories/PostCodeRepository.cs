@@ -14,7 +14,10 @@ namespace PropertyWizard.DataAccess.Repositories
 
         public void Update(string code, PostCode data)
         {
-            UpdateDefinition<PostCode> update = Builders<PostCode>.Update.Set<string>(p => p.Description, data.Description);
+            UpdateDefinition<PostCode> update = Builders<PostCode>.Update.Combine(
+                Builders<PostCode>.Update.Set<string>(p => p.Description, data.Description),
+                Builders<PostCode>.Update.Set<bool>(p => p.Enabled, data.Enabled)
+            );
 
             base.Update(code, update);
         }
