@@ -7,7 +7,12 @@ using System.Linq;
 
 namespace PropertyWizard.DataAccess.Repositories
 {
-    public abstract class RepositoryBase<TEntity, TIdentifier> 
+    public interface IRepository
+    {
+
+    }
+
+    public abstract class RepositoryBase<TEntity, TIdentifier> :IRepository
     {
         internal MongoHelper helper = new MongoHelper();
 

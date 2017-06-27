@@ -97,8 +97,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="DataAccess\Repositories\HMRawPriceDataRepositoryTest.cs" />
     <Compile Include="DataAccess\Repositories\PostCodeRepositoryTest.cs" />
     <Compile Include="DataAccess\Repositories\AgencyRepositoryTest.cs" />
+    <Compile Include="DataAccess\Repositories\RepositoryTestBase.cs" />
     <Compile Include="DataAccess\Repositories\ZooplaListingRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web API\Controllers\PostCodeControllerTest.cs" />

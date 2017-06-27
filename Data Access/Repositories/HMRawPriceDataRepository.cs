@@ -15,19 +15,9 @@ namespace PropertyWizard.DataAccess.Repositories
 
     public class HMRawPriceDataRepository : RepositoryBase<HMRawPriceData, Guid>, IHMRawPriceDataRepository
     {
-        /*public List<HMRawPriceData> List()
-        {
-            this.List()
-        }*/
         public override string CollectionName { get { return "hm-price-data-raw"; } }
 
-        protected override string IdentityField
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        protected override string IdentityField { get { return "_id";  } }
 
         protected override Action<BsonClassMap<HMRawPriceData>> MappingAction
         {

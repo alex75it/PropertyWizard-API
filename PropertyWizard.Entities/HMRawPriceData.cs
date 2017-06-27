@@ -11,7 +11,7 @@ namespace PropertyWizard.Entities
 
         public Guid TrandsactionId { get; set; }
         public DateTime Date { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public string PropertyType { get; set; }
         public string PostCode { get; set; }
 
