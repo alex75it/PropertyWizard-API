@@ -12,6 +12,19 @@ namespace PropertyWizard.DataAccess.Repositories
         public override string CollectionName { get { return "postcodes"; } }
         protected override string IdentityField { get { return "code"; } }
 
+        protected override Action<BsonClassMap<PostCode>> MappingAction
+        {
+            get
+            {
+                return (BsonClassMap<PostCode> map) =>
+                {
+                    map.MapProperty(m => m.Code).SetElementName("code");
+                    map.MapProperty(m => m.Description).SetElementName("description");
+                    map.MapProperty(m => m.Enabled).SetElementName("enabled");
+                };
+            }
+        }
+
         public void Update(string code, PostCode data)
         {
             UpdateDefinition<PostCode> update = Builders<PostCode>.Update.Combine(
@@ -25,18 +38,6 @@ namespace PropertyWizard.DataAccess.Repositories
         public new void Delete(string code)
         {
             base.Delete(code);
-        }
-
-        protected override void MapEntity()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(PostCode)))
-            {
-                BsonClassMap.RegisterClassMap<PostCode>(pc => {
-                    pc.MapProperty(m => m.Code).SetElementName("code");
-                    pc.MapProperty(m => m.Description).SetElementName("description");
-                    pc.MapProperty(m => m.Enabled).SetElementName("enabled");
-                });
-            }
         }
     }
 }

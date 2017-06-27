@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,16 @@ namespace PropertyWizard.DataAccess.Repositories
         internal MongoHelper helper = new MongoHelper();
 
         public abstract string CollectionName { get; }
-        
+
+        protected abstract string IdentityField { get; }
+
+        protected abstract Action<BsonClassMap<TEntity>> MappingAction { get; }
+
         public RepositoryBase()
         {
-            MapEntity();
+            if (!BsonClassMap.IsClassMapRegistered(typeof(TEntity)))
+                BsonClassMap.RegisterClassMap<TEntity>(MappingAction);
         }
-
-        protected abstract void MapEntity();
-        protected abstract string IdentityField { get; }
 
         public TEntity Create(TEntity item)
         {

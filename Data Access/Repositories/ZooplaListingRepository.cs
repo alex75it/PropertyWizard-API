@@ -20,11 +20,11 @@ namespace PropertyWizard.DataAccess.Repositories
         public override string CollectionName { get { return COLLECTION_NAME; } }
         protected override string IdentityField { get { return "listing_id"; } }
 
-        protected override void MapEntity()
+        protected override Action<BsonClassMap<ZooplaListing>> MappingAction
         {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(ZooplaListing)))
+            get
             {
-                BsonClassMap.RegisterClassMap<ZooplaListing>(zl => {
+                return (BsonClassMap<ZooplaListing> zl) => {
                     zl.MapProperty(m => m.ListingId).SetElementName("listing_id");
                     zl.MapProperty(m => m.PostCode).SetElementName("postcode");
                     zl.MapProperty(m => m.LastPublishDate).SetElementName("last_published_date");
@@ -37,7 +37,7 @@ namespace PropertyWizard.DataAccess.Repositories
                     zl.MapProperty(x => x.Longitude).SetElementName("longitude");
 
                     zl.MapProperty(x => x.Address).SetElementName("full_address");
-                });
+                };
             }
         }
 

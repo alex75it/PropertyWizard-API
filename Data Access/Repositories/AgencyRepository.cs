@@ -20,6 +20,18 @@ namespace PropertyWizard.DataAccess.Repositories
 
         protected override string IdentityField { get { return "code"; } }
 
+        protected override Action<BsonClassMap<Agency>> MappingAction
+        {
+            get
+            {
+                return (BsonClassMap<Agency> map) =>
+                {
+                    map.MapProperty(m => m.Code).SetElementName("code");
+                    map.MapProperty(m => m.Name).SetElementName("name");
+                };
+            }
+        }
+
         public new List<Agency> List()
         {
             //FieldDefinition<ZooplaListing> a = new (_AppDomain => _)
@@ -32,17 +44,6 @@ namespace PropertyWizard.DataAccess.Repositories
                 agencies.Add(new Agency(index++.ToString().PadLeft(4, '0'), name));            
 
             return agencies;
-        }
-
-        protected override void MapEntity()
-        {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(Agency)))
-            {
-                BsonClassMap.RegisterClassMap<Agency>(a => {
-                    a.MapProperty(m => m.Code).SetElementName("code");
-                    a.MapProperty(m => m.Name).SetElementName("name");
-                });
-            }
         }
     }
 }
