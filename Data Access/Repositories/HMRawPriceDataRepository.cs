@@ -1,10 +1,12 @@
-﻿using PropertyWizard.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using MongoDB.Bson.Serialization;
+
+using PropertyWizard.Entities;
+using PropertyWizard.DataAccess.Filters;
+using MongoDB.Driver;
 
 namespace PropertyWizard.DataAccess.Repositories
 {
@@ -18,7 +20,7 @@ namespace PropertyWizard.DataAccess.Repositories
         public override string CollectionName { get { return "hm-price-data-raw"; } }
 
         protected override string IdentityField { get { return "_id";  } }
-
+        
         protected override Action<BsonClassMap<HMRawPriceData>> MappingAction
         {
             get
@@ -31,8 +33,27 @@ namespace PropertyWizard.DataAccess.Repositories
                     map.MapProperty(m => m.TrandsactionId).SetElementName("transaction_id");
                     map.MapProperty(m => m.Date).SetElementName("date");
                     map.MapProperty(m => m.Price).SetElementName("price");
+                    map.MapProperty(m => m.PropertyType).SetElementName("property_type");
+                    map.MapProperty(m => m.PostCode).SetElementName("post_code");
+                    map.MapProperty(m => m.Action).SetElementName("action");
                 };
             }
+        }
+
+        //public override Li
+
+        public List<HMRawPriceData> List(HMSellDataFilter filter)
+        {
+            var filterBuilder = Builders<HMRawPriceData>.Filter;
+            FilterDefinition<HMRawPriceData> filterToApply = null;
+            if (filter.PartialPostCode != null)
+                filterToApply = filterBuilder.And(filterBuilder.Where(data => data.PostCode.StartsWith(filter.PartialPostCode)));
+            else if (filter.ExactPostCode != null)
+                filterToApply = filterBuilder.And(filterBuilder.Eq<string>(d => d.PostCode, filter.ExactPostCode));
+
+
+            //.Eq<string>(zl => zl.PostCode, postCode);
+            return base.Search(filterToApply);
         }
     }
 }

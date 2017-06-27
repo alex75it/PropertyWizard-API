@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Filters\HMSellDataFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AgencyRepository.cs" />
     <Compile Include="Repositories\HMRawPriceDataRepository.cs" />

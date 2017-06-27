@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agency.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="HMRawPriceData.cs" />
     <Compile Include="Postcode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,6 +10,8 @@ using MongoDB.Bson.Serialization;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
+    // todo: semplify using RepositoryBase
+
     [TestFixture, Category("Agency")]
     public class AgencyReposoitoryTest
     {

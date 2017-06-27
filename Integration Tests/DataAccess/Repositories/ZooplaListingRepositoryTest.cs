@@ -13,6 +13,8 @@ using PropertyWizard.Entities;
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
 
+    // todo: semplify using RepositoryBase
+
     [TestFixture, Category("Zoopla listing")]
     public class ZooplaListingRepositoryTest
     {

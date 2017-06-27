@@ -12,6 +12,8 @@ using PropertyWizard.Entities;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
+    // todo: semplify using RepositoryBase
+
     [TestFixture, Category("PostCode")]
     public class PostCodeRepositoryTest
     {

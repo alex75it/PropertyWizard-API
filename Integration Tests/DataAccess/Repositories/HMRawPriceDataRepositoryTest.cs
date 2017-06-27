@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using NUnit.Framework;
+using Should;
+
 using PropertyWizard.DataAccess.Repositories;
+using PropertyWizard.DataAccess.Filters;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
@@ -17,6 +20,21 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             var data = repository.List();
 
             Assert.IsNotNull(data);
+        }
+
+        [Test]
+        public void List_Filtering_PartialPostCode()
+        {
+            string partialPostCode = "SE17"; // London partial post code
+            HMSellDataFilter filter = HMSellDataFilter.Create(partialPostCode);
+
+            // Act
+            var list = repository.List(filter);
+
+            Assert.IsNotNull(list);
+            list.ShouldBeEmpty();
+
+            list.All(x => x.PostCode.StartsWith(partialPostCode));
         }
 
     }
