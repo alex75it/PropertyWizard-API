@@ -10,12 +10,12 @@ using MongoDB.Driver;
 
 namespace PropertyWizard.DataAccess.Repositories
 {
-    public interface IHMRawPriceDataRepository 
+    public interface ISellDataRepository 
     {
-        List<HMRawPriceData> List();
+        List<HMRawPriceData> List(HMSellDataFilter filter);
     }
 
-    public class HMRawPriceDataRepository : RepositoryBase<HMRawPriceData, Guid>, IHMRawPriceDataRepository
+    public class HMRawPriceDataRepository : RepositoryBase<HMRawPriceData, Guid>, ISellDataRepository
     {
         public override string CollectionName { get { return "hm-price-data-raw"; } }
 
@@ -40,8 +40,6 @@ namespace PropertyWizard.DataAccess.Repositories
             }
         }
 
-        //public override Li
-
         public List<HMRawPriceData> List(HMSellDataFilter filter)
         {
             var filterBuilder = Builders<HMRawPriceData>.Filter;
@@ -50,9 +48,7 @@ namespace PropertyWizard.DataAccess.Repositories
                 filterToApply = filterBuilder.And(filterBuilder.Where(data => data.PostCode.StartsWith(filter.PartialPostCode)));
             else if (filter.ExactPostCode != null)
                 filterToApply = filterBuilder.And(filterBuilder.Eq<string>(d => d.PostCode, filter.ExactPostCode));
-
-
-            //.Eq<string>(zl => zl.PostCode, postCode);
+            
             return base.Search(filterToApply);
         }
     }

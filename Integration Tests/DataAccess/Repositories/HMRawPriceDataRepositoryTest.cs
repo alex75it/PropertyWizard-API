@@ -32,7 +32,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             var list = repository.List(filter);
 
             Assert.IsNotNull(list);
-            list.ShouldBeEmpty();
+            list.ShouldNotBeEmpty();
 
             list.All(x => x.PostCode.StartsWith(partialPostCode));
         }
