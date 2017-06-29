@@ -8,10 +8,12 @@ using System.Web.Http;
 using PropertyWizard.Core.Providers;
 using PropertyWizard.DataAccess.Repositories;
 using PropertyWizard.Entities;
+using System.Web.Http.Cors;
 
 namespace PropertyWizard.WebApi.Controllers
 {
     [RoutePrefix("SellData")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class SellDataController : ControllerBase
     {
         private SellDataProvider provider;
