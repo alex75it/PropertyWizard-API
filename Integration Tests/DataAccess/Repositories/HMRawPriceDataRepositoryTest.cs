@@ -37,5 +37,26 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             list.All(x => x.PostCode.StartsWith(partialPostCode));
         }
 
+        [Test]
+        public void List__PopulateAllFields()
+        {
+            // TODO
+            Assert.Inconclusive(" create a record arnd reload it");
+
+
+            string partialPostCode = "SE17"; // London partial post code
+            HMSellDataFilter filter = HMSellDataFilter.Create(partialPostCode);
+
+            // Act
+            var list = repository.List(filter);
+
+            
+
+            Assert.IsNotNull(list);
+            list.ShouldNotBeEmpty();
+
+            list.All(x => x.PostCode.StartsWith(partialPostCode));
+        }
+
     }
 }

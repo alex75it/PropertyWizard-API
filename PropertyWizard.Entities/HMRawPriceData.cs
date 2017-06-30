@@ -13,9 +13,19 @@ namespace PropertyWizard.Entities
         public DateTime Date { get; set; }
         public double Price { get; set; }
         public string PropertyType { get; set; }
+        public string HoldingType { get; set; }
         public string PostCode { get; set; }
+        public string YN { get; set; }
 
+        public string PAON { get; set; }
+        public string SAON { get; set; }
+        public string Street { get; set; }
+        public string Locality { get; set; }
+        public string City { get; set; }
+        public string Distrct { get; set; }
+        public string County { get; set; }
 
+        public string X { get; set; }
         public string Action { get; set; }
 
     }
