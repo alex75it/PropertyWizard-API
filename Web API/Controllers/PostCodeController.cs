@@ -12,7 +12,7 @@ using PropertyWizard.Core.Entities;
 
 namespace PropertyWizard.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     //[EnableCors(origins: "*", headers: "*", methods: "*")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("postcode")]
