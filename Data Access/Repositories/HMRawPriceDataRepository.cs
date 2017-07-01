@@ -51,5 +51,10 @@ namespace PropertyWizard.DataAccess.Repositories
             
             return base.Search(filterToApply);
         }
+
+        public new List<HMRawPriceData> List()
+        {
+            throw new Exception("Operation not allowed. List methods should apply some filters.");
+        }
     }
 }

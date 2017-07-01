@@ -68,7 +68,6 @@
   <ItemGroup>
     <Compile Include="Core\Providers\AgencyProviderTest.cs" />
     <Compile Include="Core\Providers\StatisticsProviderTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

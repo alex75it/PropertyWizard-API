@@ -7,23 +7,39 @@ using Should;
 
 using PropertyWizard.DataAccess.Repositories;
 using PropertyWizard.DataAccess.Filters;
+using PropertyWizard.Entities;
 
 namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 {
-    [TestFixture, Category("HM")]
+    [TestFixture, Category("Sell data")]
     public class HMRawPriceDataRepositoryTest :RepositoryTestBase<HMRawPriceDataRepository>
     {
         [Test]
-        public void List()
+        public void List__should__ReturnAllFields()
         {
-            // Act
-            var data = repository.List();
+            string partialPostCode = "SE17";
 
-            Assert.IsNotNull(data);
+            var sellData = CreateRecord();
+            SaveRecord(sellData);
+
+
+            var filter = HMSellDataFilter.Create(partialPostCode);
+
+            // Act
+            var list = repository.List(filter);
+
+            if(list == null || list.Count == 0)
+                Assert.Inconclusive("No records to check");
+
+            var loadedSellData = list.Find(x => x.Id == sellData.Id);
+            if (loadedSellData == null)
+                Assert.Inconclusive("No record to check");
+
+            Assert.AreEqual(sellData.Id, loadedSellData.Id);
         }
 
         [Test]
-        public void List_Filtering_PartialPostCode()
+        public void List__when__Filtering_PartialPostCode__should__Return_OnlyRecordsThatPartialCodeStartsWithGivenValue()
         {
             string partialPostCode = "SE17"; // London partial post code
             HMSellDataFilter filter = HMSellDataFilter.Create(partialPostCode);
@@ -36,6 +52,26 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 
             list.All(x => x.PostCode.StartsWith(partialPostCode));
         }
+
+
+        #region test utils
+
+        private HMRawPriceData CreateRecord() {
+
+            var data = new HMRawPriceData()
+            {
+                Id = Guid.NewGuid(),                
+            };
+
+            return data;
+        }
+
+        private HMRawPriceData SaveRecord(HMRawPriceData sellData)
+        {
+            return repository.Create(sellData);
+        }
+
+        #endregion
 
     }
 }
