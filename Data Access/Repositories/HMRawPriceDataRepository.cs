@@ -35,6 +35,19 @@ namespace PropertyWizard.DataAccess.Repositories
                     map.MapProperty(m => m.Price).SetElementName("price");
                     map.MapProperty(m => m.PropertyType).SetElementName("property_type");
                     map.MapProperty(m => m.PostCode).SetElementName("post_code");
+
+                    map.MapProperty(m => m.HoldingType).SetElementName("holding_type");
+                    map.MapProperty(m => m.YN).SetElementName("yn");
+
+                    map.MapProperty(m => m.PAON).SetElementName("paon");
+                    map.MapProperty(m => m.SAON).SetElementName("saon");
+                    map.MapProperty(m => m.Street).SetElementName("street");
+                    map.MapProperty(m => m.Locality).SetElementName("locality");
+                    map.MapProperty(m => m.City).SetElementName("city");
+                    map.MapProperty(m => m.District).SetElementName("distric");
+                    map.MapProperty(m => m.County).SetElementName("county");
+
+                    map.MapProperty(m => m.X).SetElementName("x");
                     map.MapProperty(m => m.Action).SetElementName("action");
                 };
             }

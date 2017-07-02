@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
-using Web_API;
 
 namespace PropertyWizard.WebApi.Models
 {

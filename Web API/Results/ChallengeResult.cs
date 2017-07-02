@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Web_API.Results
+namespace PropertyWizard.WebApi.Results
 {
     public class ChallengeResult : IHttpActionResult
     {

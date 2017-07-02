@@ -1,11 +1,10 @@
-﻿using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using MongoDB.Bson.Serialization;
+using MongoDB.Driver;
 
 namespace PropertyWizard.DataAccess.Repositories
 {
@@ -29,6 +28,10 @@ namespace PropertyWizard.DataAccess.Repositories
         {
             get
             {
+                // Abouut UUID subtype: http://3t.io/blog/best-practices-uuid-mongodb/
+                // This force the driver to use subtype 4 (standard) instead of 3 (legacy)
+                MongoDefaults.GuidRepresentation = MongoDB.Bson.GuidRepresentation.Standard;
+
                 if (database == null)
                     database = new MongoClient(ConnectionString).GetDatabase(DATABASE_NAME);
                 return database;
