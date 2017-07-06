@@ -17,13 +17,18 @@ namespace PropertyWizard.Core.Providers
             repository = new HMRawPriceDataRepository();
         }
 
-        public List<HMRawPriceData> List(string postCode)
+        public PagedResult<HMRawPriceData> List(string postCode, RequestPagingInfo paging)
         {
             // todo: try catch (validate filter)
             var filter = HMSellDataFilter.Create(postCode);
 
             var result = repository.List(filter);
-            return result;
+
+            bool isLastPage = false;            
+
+            var  pagedResult = PagedResult< HMRawPriceData>.Create(paging, result, isLastPage);
+
+            return pagedResult;
         }
 
     }

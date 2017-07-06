@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\AgencyData.cs" />
+    <Compile Include="PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\AgencyProvider.cs" />
     <Compile Include="Providers\SellDataProvider.cs" />
     <Compile Include="Providers\StatisticsProvider.cs" />
+    <Compile Include="RequestPagingInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data Access\Data Access.csproj">
