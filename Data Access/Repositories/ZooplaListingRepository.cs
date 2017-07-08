@@ -11,7 +11,7 @@ namespace PropertyWizard.DataAccess.Repositories
 {
     public interface IZooplaListingRepository
     {
-        List<ZooplaListing> List(string postCode);
+        SearchResult<ZooplaListing> List(string postCode, int pageSize, int pageNumber);
     }
 
     public class ZooplaListingRepository : RepositoryBase<ZooplaListing, int>, IZooplaListingRepository
@@ -41,10 +41,10 @@ namespace PropertyWizard.DataAccess.Repositories
             }
         }
 
-        public List<ZooplaListing> List(string postCode)
+        public SearchResult<ZooplaListing> List(string postCode, int pageSize, int pageNumber)
         {
             var filter = Builders<ZooplaListing>.Filter.Eq<string>(zl => zl.PostCode, postCode);
-            return base.Search(filter);
+            return base.Search(filter, pageSize, pageNumber);
         }
     }
 

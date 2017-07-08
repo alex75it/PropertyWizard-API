@@ -41,7 +41,7 @@ namespace PropertyWizard.WebApi.Controllers
         public IEnumerable<PostCode> GetList()
         {
             logger.Info("GetList");
-            var list = repository.List();
+            var list = repository.All();
             return list;
         }
 

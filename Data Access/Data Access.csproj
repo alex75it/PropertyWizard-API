@@ -62,6 +62,7 @@
     <Compile Include="Repositories\MongoHelper.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\ZooplaListingRepository.cs" />
+    <Compile Include="SearchResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

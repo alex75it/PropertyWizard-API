@@ -25,11 +25,12 @@ namespace PropertyWizard.Core.Providers
             ResetErrors();
 
             var agencies = agencyRepository.List();
-            var listings = listingRepository.List(postCode);
+            // get all the resords
+            var listings = listingRepository.List(postCode, int.MaxValue, 1).Items;
 
             IDictionary<string, AgencyData> stats = new Dictionary<string, AgencyData>();
-
-            listings.ForEach(l =>
+            
+            listings.ToList().ForEach(l =>
             {
                 string agencyCode = GetAgencyCode(agencies, l.AgencyName);
                 if (agencyCode == null)

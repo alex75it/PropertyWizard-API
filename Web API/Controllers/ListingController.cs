@@ -26,7 +26,16 @@ namespace PropertyWizard.WebApi.Controllers
         public IEnumerable<ZooplaListing> GetList(string postCode)
         {
             logger.Info("GetList");
-            var list = repository.List(postCode);
+            var list = repository.List(postCode, int.MaxValue, 1).Items;
+
+            return list;
+        }
+
+        [Route("/{postCode}?pageSize={pageSize}&page={page}")]
+        public IEnumerable<ZooplaListing> GetList(string postCode, int pageSize, int page)
+        {
+            logger.Info("GetList");
+            var list = repository.List(postCode, pageSize, page).Items;
 
             return list;
         }

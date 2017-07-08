@@ -41,7 +41,7 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             CreateListing(listing);
 
             // Execute
-            var list = repository.List();
+            var list = repository.All();
 
             Assert.IsNotNull(list);
             Assert.IsNotEmpty(list);
@@ -53,8 +53,9 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             CreateListing(new ZooplaListing(1, "postcode", DateTime.UtcNow));
 
             // Execute
-            var list = repository.List("postcode");
+            var searchResult = repository.List("postcode", 10, 1);
 
+            var list = searchResult.Items.ToList();
             Assert.IsNotNull(list);
             Assert.AreEqual(list.Count(), 1);
             Assert.AreEqual(list[0].ListingId, 1);

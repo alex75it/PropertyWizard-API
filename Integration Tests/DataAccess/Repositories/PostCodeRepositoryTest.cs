@@ -74,12 +74,12 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         }
 
         [Test]
-        public void List()
+        public void All()
         {
             CreateTestRecord(new PostCode("code", "description", !default(bool)));
 
             // Execute
-            var list = repository.List();
+            var list = repository.All();
 
             Assert.IsNotNull(list);
             Assert.IsNotEmpty(list);

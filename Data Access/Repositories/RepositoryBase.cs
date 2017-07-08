@@ -46,7 +46,7 @@ namespace PropertyWizard.DataAccess.Repositories
             Collection.DeleteOne( GetFilterById(id) );
         }
 
-        public List<TEntity> List()
+        public List<TEntity> All()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace PropertyWizard.DataAccess.Repositories
             }
             catch (Exception exc)
             {
-                throw new Exception("Fail to execute List().", exc);
+                throw new Exception("Fail to execute All().", exc);
             }
         }
 
@@ -66,9 +66,32 @@ namespace PropertyWizard.DataAccess.Repositories
             return item;
         }
 
-        internal List<TEntity> Search(FilterDefinition<TEntity> filter)
+        //internal List<TEntity> Search(FilterDefinition<TEntity> filter)
+        //{
+        //    return Collection.Count(filter);
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageSize">Number of items.</param>
+        /// <param name="page">1-base page number</param>
+        /// <returns></returns>
+        public SearchResult<TEntity> Search(FilterDefinition<TEntity> filter, int pageSize, int page)
         {
-            return Collection.Find(filter).ToList();
+            var itemsInPage = Collection.Find(filter).Skip(pageSize * page - 1).Limit(pageSize).ToList();
+            var numberOfItems = Count(filter);
+
+            return new SearchResult<TEntity>() {
+                Items = itemsInPage,
+                NumberOfItems = numberOfItems
+            };
+        }
+
+        public long Count(FilterDefinition<TEntity> filter)
+        {
+            return Collection.Count(filter);
         }
 
         private IMongoCollection<TEntity> Collection

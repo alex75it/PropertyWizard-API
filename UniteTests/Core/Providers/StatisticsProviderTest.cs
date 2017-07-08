@@ -9,6 +9,7 @@ using Should;
 using PropertyWizard.Core.Providers;
 using PropertyWizard.DataAccess.Repositories;
 using PropertyWizard.Entities;
+using PropertyWizard.DataAccess;
 
 namespace PropertyWizard.UnitTests.Core.Providers
 {
@@ -48,7 +49,12 @@ namespace PropertyWizard.UnitTests.Core.Providers
                 new ZooplaListing(5, "aaa", DateTime.Now) { AgencyName = agencyName_2},
             };
 
-            listingRepository.Setup(r => r.List(postcode)).Returns(listings);
+            SearchResult<ZooplaListing> searchResult = new SearchResult<ZooplaListing>() {
+                Items = listings,
+                NumberOfItems = listings.Count
+            };
+
+            listingRepository.Setup(r => r.List(postcode, int.MaxValue, 1)).Returns(searchResult);
 
             agencyRepository.Setup(r => r.List()).Returns(agencies);
 

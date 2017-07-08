@@ -26,9 +26,10 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             var filter = HMSellDataFilter.Create(partialPostCode);
 
             // Act
-            var list = repository.List(filter);
+            var searchResult = repository.List(filter, 20, 1);
 
-            if(list == null || list.Count == 0)
+            var list = searchResult.Items.ToList();
+            if (list == null || list.Count == 0)
                 Assert.Inconclusive("No records to check");
 
             var loadedSellData = list.Find(x => x.Id == sellData.Id);
@@ -45,9 +46,10 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             HMSellDataFilter filter = HMSellDataFilter.Create(partialPostCode);
 
             // Act
-            var list = repository.List(filter);
+            var searchResult = repository.List(filter, 20, 1);
 
-            Assert.IsNotNull(list);
+            var list = searchResult.Items;
+            Assert.IsNotNull(searchResult);
             list.ShouldNotBeEmpty();
 
             list.All(x => x.PostCode.StartsWith(partialPostCode));
@@ -77,17 +79,16 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
         public void List__PopulateAllFields()
         {
             // TODO
-            Assert.Inconclusive(" create a record arnd reload it");
+            Assert.Inconclusive(" create a record and reload it");
 
 
             string partialPostCode = "SE17"; // London partial post code
             HMSellDataFilter filter = HMSellDataFilter.Create(partialPostCode);
 
             // Act
-            var list = repository.List(filter);
+            var searchResult = repository.List(filter, 20, 1);
 
-            
-
+            var list = searchResult.Items;
             Assert.IsNotNull(list);
             list.ShouldNotBeEmpty();
 

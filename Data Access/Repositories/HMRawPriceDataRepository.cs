@@ -12,7 +12,14 @@ namespace PropertyWizard.DataAccess.Repositories
 {
     public interface ISellDataRepository 
     {
-        List<HMRawPriceData> List(HMSellDataFilter filter);
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="pageSize">Number of items</param>
+        /// <param name="page">1-based page number</param>
+        /// <returns></returns>
+        SearchResult<HMRawPriceData> List(HMSellDataFilter filter, int pageSize, int page);
     }
 
     public class HMRawPriceDataRepository : RepositoryBase<HMRawPriceData, Guid>, ISellDataRepository
@@ -53,7 +60,7 @@ namespace PropertyWizard.DataAccess.Repositories
             }
         }
 
-        public List<HMRawPriceData> List(HMSellDataFilter filter)
+        public SearchResult<HMRawPriceData> List(HMSellDataFilter filter, int pageSize, int page)
         {
             var filterBuilder = Builders<HMRawPriceData>.Filter;
             FilterDefinition<HMRawPriceData> filterToApply = null;
@@ -61,11 +68,11 @@ namespace PropertyWizard.DataAccess.Repositories
                 filterToApply = filterBuilder.And(filterBuilder.Where(data => data.PostCode.StartsWith(filter.PartialPostCode)));
             else if (filter.ExactPostCode != null)
                 filterToApply = filterBuilder.And(filterBuilder.Eq<string>(d => d.PostCode, filter.ExactPostCode));
-            
-            return base.Search(filterToApply);
+                        
+            return base.Search(filterToApply, pageSize, page);
         }
 
-        public new List<HMRawPriceData> List()
+        public new List<HMRawPriceData> All()
         {
             throw new Exception("Operation not allowed. List methods should apply some filters.");
         }

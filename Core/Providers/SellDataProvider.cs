@@ -22,11 +22,11 @@ namespace PropertyWizard.Core.Providers
             // todo: try catch (validate filter)
             var filter = HMSellDataFilter.Create(postCode);
 
-            var result = repository.List(filter);
+            var searchResult = repository.List(filter, paging.PageSize, paging.PageNumber);
+         
+            bool isLastPage = searchResult.NumberOfItems <= paging.PageSize * paging.PageNumber;
 
-            bool isLastPage = false;            
-
-            var  pagedResult = PagedResult< HMRawPriceData>.Create(paging, result, isLastPage);
+            var  pagedResult = PagedResult<HMRawPriceData>.Create(paging, searchResult.Items, isLastPage);
 
             return pagedResult;
         }
