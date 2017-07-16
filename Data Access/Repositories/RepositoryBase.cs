@@ -80,7 +80,7 @@ namespace PropertyWizard.DataAccess.Repositories
         /// <returns></returns>
         public SearchResult<TEntity> Search(FilterDefinition<TEntity> filter, int pageSize, int page)
         {
-            var itemsInPage = Collection.Find(filter).Skip(pageSize * page - 1).Limit(pageSize).ToList();
+            var itemsInPage = Collection.Find(filter).Skip(pageSize * (page - 1)).Limit(pageSize).ToList();
             var numberOfItems = Count(filter);
 
             return new SearchResult<TEntity>() {

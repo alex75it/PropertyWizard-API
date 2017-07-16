@@ -57,9 +57,9 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
 
             var list = searchResult.Items.ToList();
             Assert.IsNotNull(list);
-            Assert.AreEqual(list.Count(), 1);
-            Assert.AreEqual(list[0].ListingId, 1);
-            Assert.AreEqual(list[0].PostCode, "postcode");
+            Assert.AreEqual(1, list.Count());
+            Assert.AreEqual(1, list[0].ListingId);
+            Assert.AreEqual("postcode", list[0].PostCode);
         }
 
         [Test]
@@ -92,6 +92,8 @@ namespace PropertyWizard.IntegrationTests.DataAccess.Repositories
             savedListing.Longitude.ShouldEqual(listing.Longitude);
             savedListing.Address.ShouldEqual(listing.Address);
         }
+
+
 
 
         #region utilities
