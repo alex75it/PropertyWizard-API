@@ -18,6 +18,7 @@ namespace PropertyWizard.WebApi.Controllers
     public class SellDataController : ControllerBase
     {
         private SellDataProvider provider;
+        private const int DEFAULT_PAGE_SIZE = 25;
 
         public SellDataController()
         {
@@ -25,22 +26,15 @@ namespace PropertyWizard.WebApi.Controllers
             provider = new SellDataProvider(sellDataREpository);
         }
 
-        //[HttpGet]
-        //[Route("list")]
-        //public List<HMRawPriceData> Search(string postCode)
-        //{
-        //    var list = provider.List(postCode);
-        //}
-
-
         [HttpGet]
         [Route("list")]
-        public PagedResult<HMRawPriceData> Search(string postCode, int pageSize, int page)
+        public PagedResult<HMRawPriceData> Search(string postCode, int pageSize = DEFAULT_PAGE_SIZE, int page = 1)
         {
-            //[FromUri]RequestPagingInfo pagination
             var pagination = RequestPagingInfo.Create(pageSize, page);
             var result = provider.List(postCode, pagination);
             return result;
         }
     }
+
+
 }

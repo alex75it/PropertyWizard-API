@@ -6,9 +6,17 @@ using Microsoft.Owin.Security.OAuth;
 using System.Net.Http.Headers;
 
 using Newtonsoft.Json.Serialization;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web.Http.Controllers;
+using PropertyWizard.WebApi.Filters;
 
 namespace PropertyWizard.WebApi
 {
+
+ 
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -17,6 +25,8 @@ namespace PropertyWizard.WebApi
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.Filters.Add(new LogApiRequestFilter());
+            config.Filters.Add(new LogApiExceptionFilter());
 
             // enable CORS: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
             config.EnableCors();

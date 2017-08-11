@@ -227,6 +227,9 @@
     <Compile Include="Controllers\SellDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingController.cs" />
+    <Compile Include="Filters\LogApiExceptionFilter.cs" />
+    <Compile Include="Filters\LogApiRequestFilter.cs" />
+    <Compile Include="Filters\LogRequestAttribute.cs" />
     <Compile Include="Models\IdentityUserLogin.cs" />
     <Compile Include="Controllers\PostCodeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
