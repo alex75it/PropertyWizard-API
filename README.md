@@ -1,9 +1,9 @@
 # Property Wizard Web API
 
 Web API to retrieve Property Wizard data.
-This is ann HTTP server running on Google App Engine.
-Google App Engine project Id: "property-wizard-web".  
-Url: https://property-wizard-web.appspot.com
+
+=== SUSPENDED ===
+
 
 ## API usage
 
